@@ -1,7 +1,7 @@
 import 'package:bordered_text/bordered_text.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/core/colors/colors.dart';
-import 'package:netflix_clone/core/colors/constants.dart';
+import '../../../core/debounce/constants.dart';
 
 class NumberCard extends StatelessWidget {
   const NumberCard({Key? key, required this.index, required this.imageUrl})

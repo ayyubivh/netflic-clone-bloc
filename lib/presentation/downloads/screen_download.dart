@@ -1,8 +1,10 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix_clone/application/bloc/downloads_bloc.dart';
 import 'package:netflix_clone/core/colors/colors.dart';
-import 'package:netflix_clone/core/colors/constants.dart';
-
+import '../../core/debounce/constants.dart';
+import '../../core/debounce/loader.dart';
 import '../widgets/app_bar_widget.dart';
 
 class DownloadScreen extends StatelessWidget {
@@ -16,7 +18,6 @@ class DownloadScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: const PreferredSize(
           preferredSize: Size.fromHeight(50),
@@ -86,8 +87,10 @@ class Section2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {});
-
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      BlocProvider.of<DownloadsBloc>(context)
+          .add(const DownloadsEvent.getDownloadsImage());
+    });
     final Size size = MediaQuery.of(context).size;
 
     return Column(
@@ -105,39 +108,46 @@ class Section2 extends StatelessWidget {
           style: TextStyle(fontSize: 16, color: Colors.grey),
         ),
         kHeight,
-        Stack(
-          alignment: Alignment.center,
-          children: [
-            CircleAvatar(
-              radius: size.width * 0.383,
-              backgroundColor: Colors.grey.withOpacity(0.5),
-            ),
-            DownloadsImageWidget(
-              imageList:
-                  'https://www.themoviedb.org/t/p/w220_and_h330_face/1EnBjTJ5utgT1OXYBZ8YwByRCzP.jpg',
-              margin: const EdgeInsets.only(left: 170, top: 50),
-              angle: 25,
-              size: Size(size.width * 0.35, size.width * 0.55),
-            ),
-            DownloadsImageWidget(
-              imageList:
-                  'https://www.themoviedb.org/t/p/w220_and_h330_face/1EnBjTJ5utgT1OXYBZ8YwByRCzP.jpg',
-              margin: const EdgeInsets.only(right: 170, top: 50),
-              angle: -20,
-              size: Size(size.width * 0.35, size.width * 0.55),
-            ),
-            DownloadsImageWidget(
-              imageList:
-                  'https://www.themoviedb.org/t/p/w220_and_h330_face/1EnBjTJ5utgT1OXYBZ8YwByRCzP.jpg',
-              margin: const EdgeInsets.only(bottom: 35, top: 50),
-              size: Size(size.width * 0.4, size.width * 0.6),
-              radius: 8,
-            )
-          ],
+        BlocBuilder<DownloadsBloc, DownloadsState>(
+          builder: (context, state) {
+            return state.isLoading
+                ? const Loader()
+                : SizedBox(
+                    height: size.height / 2.5,
+                    width: size.width,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: size.width * 0.383,
+                          backgroundColor: Colors.grey.withOpacity(0.5),
+                        ),
+                        DownloadsImageWidget(
+                          imageList:
+                              '$imageAppendUrl${state.downloads?[5].posterPath}',
+                          margin: const EdgeInsets.only(left: 170, top: 50),
+                          angle: 25,
+                          size: Size(size.width * 0.35, size.width * 0.55),
+                        ),
+                        DownloadsImageWidget(
+                          imageList:
+                              '$imageAppendUrl${state.downloads?[1].posterPath}',
+                          margin: const EdgeInsets.only(right: 170, top: 50),
+                          angle: -20,
+                          size: Size(size.width * 0.35, size.width * 0.55),
+                        ),
+                        DownloadsImageWidget(
+                          imageList:
+                              '$imageAppendUrl${state.downloads?[8].posterPath}',
+                          margin: const EdgeInsets.only(bottom: 35, top: 50),
+                          size: Size(size.width * 0.4, size.width * 0.6),
+                          radius: 8,
+                        )
+                      ],
+                    ),
+                  );
+          },
         ),
-        //           );
-        //         },
-        // ),
       ],
     );
   }
@@ -192,9 +202,12 @@ class DownloadsImageWidget extends StatelessWidget {
           height: size.height,
           width: size.width,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(radius),
-              image: DecorationImage(
-                  fit: BoxFit.cover, image: NetworkImage(imageList))),
+            borderRadius: BorderRadius.circular(radius),
+            image: DecorationImage(
+              fit: BoxFit.cover,
+              image: NetworkImage(imageList),
+            ),
+          ),
         ),
       ),
     );

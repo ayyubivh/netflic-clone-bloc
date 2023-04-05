@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/core/colors/colors.dart';
-import 'package:netflix_clone/core/colors/constants.dart';
-import 'package:netflix_clone/presentation/search/widget/search_result.dart';
-
+import '../../../core/debounce/constants.dart';
 import 'custom_btn.dart';
 
 class BgCard extends StatelessWidget {

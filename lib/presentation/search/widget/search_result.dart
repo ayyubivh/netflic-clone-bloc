@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:netflix_clone/core/colors/constants.dart';
-
+import '../../../core/debounce/constants.dart';
 import '../../widgets/main_card.dart';
 import 'title.dart';
 

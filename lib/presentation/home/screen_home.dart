@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:netflix_clone/core/colors/colors.dart';
-import 'package:netflix_clone/core/colors/constants.dart';
 import 'package:netflix_clone/presentation/home/widgets/bg_card.dart';
 import 'package:netflix_clone/presentation/home/widgets/number_title_card.dart';
 import 'package:netflix_clone/presentation/search/widget/search_result.dart';
+import '../../core/debounce/constants.dart';
 import '../widgets/main_title_card.dart';
 
 ValueNotifier<bool> scrollNotifier = ValueNotifier(false);

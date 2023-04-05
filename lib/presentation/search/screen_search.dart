@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:netflix_clone/core/colors/constants.dart';
 import 'package:netflix_clone/presentation/search/widget/search_idle.dart';
 import 'package:netflix_clone/presentation/search/widget/search_result.dart';
+
+import '../../core/debounce/constants.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});

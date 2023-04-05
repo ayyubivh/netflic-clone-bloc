@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/core/colors/colors.dart';
-import 'package:netflix_clone/core/colors/constants.dart';
 import 'package:netflix_clone/presentation/search/widget/title.dart';
+
+import '../../../core/debounce/constants.dart';
 
 class SearchIdleWidget extends StatelessWidget {
   const SearchIdleWidget({Key? key}) : super(key: key);

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:netflix_clone/core/colors/colors.dart';
 import 'package:netflix_clone/presentation/search/widget/search_result.dart';
-
-import '../../core/colors/constants.dart';
+import '../../core/debounce/constants.dart';
 import 'widgets/coming_soon_widget.dart';
 import 'widgets/every_one_watch.dart';
 

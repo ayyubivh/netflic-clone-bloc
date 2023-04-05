@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:netflix_clone/core/colors/constants.dart';
 import 'package:netflix_clone/presentation/home/widgets/main_title.dart';
+import '../../../core/debounce/constants.dart';
 import 'number_card.dart';
 
 class NumberTitleCard extends StatelessWidget {

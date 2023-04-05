@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:netflix_clone/core/colors/constants.dart';
 import 'package:netflix_clone/presentation/home/widgets/main_title.dart';
 import 'package:netflix_clone/presentation/widgets/main_card.dart';
+
+import '../../core/debounce/constants.dart';
 
 class MainTitleCard extends StatelessWidget {
   const MainTitleCard({

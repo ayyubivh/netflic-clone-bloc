@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:netflix_clone/core/colors/constants.dart';
+import '../../core/debounce/constants.dart';
 
 class MainCard extends StatelessWidget {
   final String imageUrl;
