@@ -13,4 +13,5 @@ TextStyle kHomeTileText = TextStyle(fontSize: 15, fontWeight: FontWeight.bold);
 //image
 const kMainImage =
     "https://www.themoviedb.org/t/p/w440_and_h660_face/9z4jRr43JdtU66P0iy8h18OyLql.jpg";
+
 const imageAppendUrl = 'https://image.tmdb.org/t/p/w500';

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix_clone/application/search/search_bloc.dart';
 import 'package:netflix_clone/core/colors/colors.dart';
+import 'package:netflix_clone/core/debounce/loader.dart';
 import 'package:netflix_clone/presentation/search/widget/title.dart';
 
 import '../../../core/debounce/constants.dart';
 
 class SearchIdleWidget extends StatelessWidget {
   const SearchIdleWidget({Key? key}) : super(key: key);
-  final imageurl =
-      'https://www.themoviedb.org/t/p/w533_and_h300_bestv2/tm1kAqfiElwOgXLI8goHBqhIWIM.jpg';
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,38 +20,30 @@ class SearchIdleWidget extends StatelessWidget {
         ),
         kHeight,
         Expanded(
-            child:
-                //   child: BlocBuilder<SearchBloc, SearchState>(
-                //     builder: (context, state) {
-                //       if (state.isLoading) {
-                //         return const Center(
-                //           child: CircularProgressIndicator(),
-                //         );
-                //       } else if (state.isError) {
-                //         return const Center(
-                //           child: Text('Oops..!!\nError While Loading..!!'),
-                //         );
-                //       } else if (state.idleList.isEmpty) {
-                //         return const Center(
-                //           child: Text('Oops..!!\n List is Empty...'),
-                //         );
-                //       }
-                // return
-                ListView.separated(
-          itemCount: 10,
-          shrinkWrap: true,
-          itemBuilder: ((context, index) {
-            // final movie = state.idleList[index];
-            return TopSearchList(
-              imageUrls: imageurl,
-              title: 'Not Provided',
-            );
-          }),
-          separatorBuilder: ((context, index) => kHeight20),
+          child: BlocBuilder<SearchBloc, SearchState>(
+            builder: (context, state) {
+              if (state.isLoading) {
+                return const Loader();
+              } else if (state.isError) {
+                return const Center(child: Text('Error while getting data'));
+              } else if (state.idleList.isEmpty) {
+                return const Center(child: Text('List is empty'));
+              }
+              return ListView.separated(
+                itemCount: state.idleList.length,
+                shrinkWrap: true,
+                itemBuilder: ((context, index) {
+                  final movie = state.idleList[index];
+                  return TopSearchList(
+                    imageUrls: '$imageAppendUrl${movie.posterPath}',
+                    title: '${movie.title}',
+                  );
+                }),
+                separatorBuilder: ((context, index) => kHeight20),
+              );
+            },
+          ),
         )
-            // },
-            // ),
-            )
       ],
     );
   }

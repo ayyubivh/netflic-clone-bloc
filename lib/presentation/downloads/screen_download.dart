@@ -1,8 +1,8 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:netflix_clone/application/bloc/downloads_bloc.dart';
 import 'package:netflix_clone/core/colors/colors.dart';
+import '../../application/downloads/downloads_bloc.dart';
 import '../../core/debounce/constants.dart';
 import '../../core/debounce/loader.dart';
 import '../widgets/app_bar_widget.dart';

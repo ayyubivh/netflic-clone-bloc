@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix_clone/application/search/search_bloc.dart';
 import '../../../core/debounce/constants.dart';
 import '../../widgets/main_card.dart';
 import 'title.dart';
-
-final imageurl =
-    'https://www.themoviedb.org/t/p/w533_and_h300_bestv2/tm1kAqfiElwOgXLI8goHBqhIWIM.jpg';
 
 class SearchResult extends StatelessWidget {
   const SearchResult({super.key});
@@ -18,22 +17,19 @@ class SearchResult extends StatelessWidget {
         kHeight,
         Expanded(
           child:
-              //BlocBuilder<SearchBloc, SearchState>(
-              //     builder: (context, state) {
-              // return
-              GridView.count(
-            crossAxisCount: 3,
-            mainAxisSpacing: 8,
-            crossAxisSpacing: 8,
-            childAspectRatio: 1 / 1.4,
-            shrinkWrap: true,
-            children: List.generate(20, (index) {
-              // final movie = state.searchResultList[index];
-              return MainCard(imageUrl: imageurl);
-            }),
-            // );
-            // },
-          ),
+              BlocBuilder<SearchBloc, SearchState>(builder: (context, state) {
+            return GridView.count(
+              crossAxisCount: 3,
+              mainAxisSpacing: 8,
+              crossAxisSpacing: 8,
+              childAspectRatio: 1 / 1.4,
+              shrinkWrap: true,
+              children: List.generate(20, (index) {
+                final movie = state.searchResultData[index];
+                return MainCard(imageUrl: movie.posterImageUrl);
+              }),
+            );
+          }),
         )
       ],
     );

@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:netflix_clone/core/colors/colors.dart';
 import 'package:netflix_clone/presentation/search/widget/search_result.dart';
 import '../../core/debounce/constants.dart';
+import '../../core/debounce/string.dart';
 import 'widgets/coming_soon_widget.dart';
 import 'widgets/every_one_watch.dart';
 
@@ -84,7 +85,7 @@ class ComingSoonList extends StatelessWidget {
             // id: DateTime.now(),
             month: formatedMonth,
             day: formatedDay,
-            posterPath: imageurl,
+            posterPath: tempImg,
             movieName: 'No title',
             description: "No description");
       }),
@@ -115,7 +116,7 @@ class EveryoneIsWatchingList extends StatelessWidget {
         return EveryoneWatchingWidget(
           movieName: "No name provider",
           description: "No description",
-          posterPath: imageurl,
+          posterPath: tempImg,
         );
       },
       itemCount: 10,

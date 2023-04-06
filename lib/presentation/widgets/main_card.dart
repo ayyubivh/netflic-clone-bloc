@@ -16,12 +16,20 @@ class MainCard extends StatelessWidget {
       height: 250,
       decoration: BoxDecoration(
         borderRadius: kRadius,
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: NetworkImage(
-            imageUrl,
-          ),
-        ),
+        // image: DecorationImage(
+        //   fit: BoxFit.cover,
+        //   image: NetworkImage(
+        //     imageUrl,
+        //   ),
+        // ),
+      ),
+      child: Image.network(
+        imageUrl,
+        errorBuilder: (context, error, stackTrace) {
+          return const Center(
+            child: Text('Failed to Load Image...'),
+          );
+        },
       ),
     );
   }

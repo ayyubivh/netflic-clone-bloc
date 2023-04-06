@@ -5,6 +5,7 @@ import 'package:netflix_clone/presentation/home/widgets/bg_card.dart';
 import 'package:netflix_clone/presentation/home/widgets/number_title_card.dart';
 import 'package:netflix_clone/presentation/search/widget/search_result.dart';
 import '../../core/debounce/constants.dart';
+import '../../core/debounce/string.dart';
 import '../widgets/main_title_card.dart';
 
 ValueNotifier<bool> scrollNotifier = ValueNotifier(false);
@@ -33,27 +34,27 @@ class HomeScreen extends StatelessWidget {
             child: Stack(
               children: [
                 ListView(
-                  children: [
-                    const BgCard(),
+                  children: const [
+                    BgCard(),
                     MainTitleCard(
                       title: 'Release in the past year',
-                      posterList: imageurl,
+                      posterList: tempImg,
                     ),
                     kHeight,
                     MainTitleCard(
                       title: 'Trending now',
-                      posterList: imageurl,
+                      posterList: tempImg,
                     ),
                     kHeight,
-                    NumberTitleCard(posterList: imageurl),
+                    NumberTitleCard(posterList: tempImg),
                     kHeight,
                     MainTitleCard(
                       title: 'Tense Dramas',
-                      posterList: imageurl,
+                      posterList: tempImg,
                     ),
                     MainTitleCard(
                       title: 'South Indian Cinema',
-                      posterList: imageurl,
+                      posterList: tempImg,
                     ),
                   ],
                 ),
