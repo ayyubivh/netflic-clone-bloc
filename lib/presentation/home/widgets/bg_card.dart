@@ -1,10 +1,17 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:netflix_clone/core/colors/colors.dart';
+
 import '../../../core/debounce/constants.dart';
 import 'custom_btn.dart';
 
 class BgCard extends StatelessWidget {
-  const BgCard({Key? key}) : super(key: key);
+  final String img;
+  const BgCard({
+    Key? key,
+    required this.img,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +20,9 @@ class BgCard extends StatelessWidget {
         Container(
           width: double.infinity,
           height: 600,
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
               image: DecorationImage(
-            image: NetworkImage(kMainImage),
+            image: NetworkImage(img),
             fit: BoxFit.cover,
           )),
         ),

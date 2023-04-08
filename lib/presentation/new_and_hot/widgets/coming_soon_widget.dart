@@ -5,7 +5,7 @@ import '../../home/widgets/custom_btn.dart';
 import 'video_widget.dart';
 
 class ComingSoonWidget extends StatelessWidget {
-  // final String id;
+  final String id;
   final String month;
   final String day;
   final String posterPath;
@@ -14,7 +14,7 @@ class ComingSoonWidget extends StatelessWidget {
 
   const ComingSoonWidget(
       {super.key,
-      // required this.id,
+      required this.id,
       required this.month,
       required this.day,
       required this.posterPath,
@@ -51,7 +51,7 @@ class ComingSoonWidget extends StatelessWidget {
         ),
         SizedBox(
           width: size.width - 50,
-          height: 450,
+          height: 470,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -106,7 +106,7 @@ class ComingSoonWidget extends StatelessWidget {
               kHeight,
               Text(
                 description,
-                maxLines: 7,
+                maxLines: 6,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                   color: kGrey,

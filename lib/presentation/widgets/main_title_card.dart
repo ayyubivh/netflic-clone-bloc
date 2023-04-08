@@ -12,7 +12,7 @@ class MainTitleCard extends StatelessWidget {
   }) : super(key: key);
 
   final String title;
-  final String posterList;
+  final List<String> posterList;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -25,7 +25,7 @@ class MainTitleCard extends StatelessWidget {
             child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: List.generate(posterList.length,
-                    (index) => MainCard(imageUrl: posterList))))
+                    (index) => MainCard(imageUrl: posterList[index]))))
       ],
     );
   }

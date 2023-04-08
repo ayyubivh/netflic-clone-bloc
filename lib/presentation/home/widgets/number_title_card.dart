@@ -8,7 +8,7 @@ class NumberTitleCard extends StatelessWidget {
     Key? key,
     required this.posterList,
   }) : super(key: key);
-  final String posterList;
+  final List<String> posterList;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class NumberTitleCard extends StatelessWidget {
               posterList.length,
               (index) => NumberCard(
                 index: index,
-                imageUrl: posterList,
+                imageUrl: posterList[index],
               ),
             ),
           ),
